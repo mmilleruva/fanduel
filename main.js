@@ -19,6 +19,7 @@ playerList = _.filter(playerList, function(player){
     });
 console.log(playerList.length);
 playerList = filterDominatedPlayers(playerList);
+console.log(playerList);
 console.log(playerList.length);
 
 main(playerList);
@@ -37,6 +38,7 @@ function main(playerList){
 
     console.log(team);
     console.log("Salary Spent: "+ team.getSalary() );
+    console.log("Expected Points: "+ team.getExpectedPoints() );
 }
 
 function filterDominatedPlayers(players){

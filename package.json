@@ -12,7 +12,12 @@
   "author": "Michael Miller",
   "license": "ISC",
   "dependencies": {
+    "async": "^0.9.0",
+    "cheerio": "^0.17.0",
+    "install": "^0.1.7",
     "lodash": "^2.4.1",
-    "mocha": "^1.21.4"
+    "mocha": "^1.21.4",
+    "npm": "^2.1.5",
+    "request": "^2.47.0"
   }
 }
