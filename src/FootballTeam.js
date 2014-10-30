@@ -8,17 +8,17 @@ var VALID_TEAM = {
   'TE': 1,
   'K':  1,
   'D':  1
-}
+};
 
 var FootballTeam = function(){
   this._validTeam = VALID_TEAM;
-  this.salaryCap = SALARY_CAP
+  this.salaryCap = SALARY_CAP;
   this.players = [];
-}
+};
 
 FootballTeam.prototype.addPlayer = function(player){
   this.players.push(player);
-}
+};
 
 FootballTeam.prototype.getSalary = function(){
  var total = 0;
@@ -28,7 +28,7 @@ FootballTeam.prototype.getSalary = function(){
   });
 
  return total;
-}
+};
 
 FootballTeam.prototype.getExpectedPoints = function(){
   var total = 0;
@@ -38,12 +38,12 @@ FootballTeam.prototype.getExpectedPoints = function(){
   });
 
   return total;
-}
+};
 
 FootballTeam.prototype.getExpectedPointsWithPlayer = function(player){
   var total = this.getExpectedPoints();
   return total + player.getExpectedPoints();
-}
+};
 
 FootballTeam.prototype.numPlayersByPosition = function(){
 
@@ -52,7 +52,7 @@ FootballTeam.prototype.numPlayersByPosition = function(){
   });
 
   return playersByPosition;
-}
+};
 
 FootballTeam.prototype.isValid = function(){
   if(this.getSalary() <= this.salaryCap ){
@@ -60,12 +60,12 @@ FootballTeam.prototype.isValid = function(){
     return _.isEqual(playersByPos, this._validTeam);
   }
   return false;
-}
+};
 
 FootballTeam.prototype.numPlayersAtPosition = function(pos){
   var playersByPostion = this.numPlayersByPosition();
   return playersByPostion[pos] || 0;
-}
+};
 
 FootballTeam.prototype.canAddPlayer = function(player){
 
@@ -78,7 +78,7 @@ FootballTeam.prototype.canAddPlayer = function(player){
     }
   }
   return false;
-}
+};
 
 FootballTeam.prototype.tryAddPlayer = function(player){
   if(this.canAddPlayer(player)){
@@ -86,7 +86,7 @@ FootballTeam.prototype.tryAddPlayer = function(player){
     return true;
   }
   return false;
-}
+};
 
 FootballTeam.prototype.clone = function(){
   var team = new FootballTeam();
@@ -96,7 +96,7 @@ FootballTeam.prototype.clone = function(){
   team._validTeam = this._validTeam;
   team.salaryCap = this.salaryCap;
   return team;
-}
+};
 
 FootballTeam.prototype.remainingPositions = function(){
   var keys = _.keys(this._validTeam);
@@ -112,6 +112,6 @@ FootballTeam.prototype.remainingPositions = function(){
     };
   };
   return openPos;
-}
+};
 
 module.exports = FootballTeam;

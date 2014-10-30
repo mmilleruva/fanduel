@@ -5,23 +5,24 @@ var FootballTeam    = require('./src/FootballTeam');
 var finalData       = require('./data/finalData');
 var _               = require('lodash');
 
-
-var file = './data/player_data.csv';
-var fields = ['position', 'name', 'ffpg', 'salary'];
-
 var playerList = _.map(finalData, function(player){
   return new FootballPlayer(player);
 })
+
 console.log(playerList.length);
 playerList = _.filter(playerList, function(player){
 
-     return player.getExpectedPoints() > 0 && ! player.exclude;
+     return player.getExpectedPoints() > 7 && ! player.exclude && player.status != 'Q';
     });
 console.log(playerList.length);
-playerList = filterDominatedPlayers(playerList);
-console.log(playerList);
-console.log(playerList.length);
+playerList = filterDominatedPlayers(playerList, {
+          'WR': 3,
+          'RB': 2,
+          'QB': 1,
+          'TE': 1});
 
+console.log(playerList.length);
+console.log(playerList);
 main(playerList);
 
 function main(playerList){
@@ -31,9 +32,9 @@ function main(playerList){
           'RB': 2,
           'QB': 1,
           'TE': 1,
-        }
-    team.salaryCap = 49800;
-
+        };
+    team.salaryCap = 49700;
+    console.log(team._validTeam);
     team = TeamSelection.selectTeamRecursive(playerList, team);
 
     console.log(team);
@@ -41,30 +42,20 @@ function main(playerList){
     console.log("Expected Points: "+ team.getExpectedPoints() );
 }
 
-function filterDominatedPlayers(players){
-  var sorted = _.sortBy(players, function(player){
-    return player.getExpectedPoints() * -1;
-  });
-
-  var curBest = {};
+function filterDominatedPlayers(players, validTeam){
 
   var returnList = [];
-  _.each(sorted,function(player){
-    // Add position if it doesn't exist
-    if(!curBest[player.position]){
-      curBest[player.position] = player.salary
+  _.each(players,function(player){
+   var domPlayers =  _.filter(players, function(otherPlayer){
+      return (player.position == otherPlayer.position &&
+             player.salary > otherPlayer.salary &&
+             player.expected < otherPlayer.expected) ;
+    });
+
+    if (domPlayers.length < validTeam[player.position]) {
       returnList.push(player);
-    }
-    else{
-      if(curBest[player.position] > player.salary){
-        curBest[player.position] = player.salary
-        returnList.push(player);
-      }
-    }
+    };
   })
   return returnList;
 }
-// PlayerImport.importPlayerData(file, fields, FootballPlayer,
-
-// )
 

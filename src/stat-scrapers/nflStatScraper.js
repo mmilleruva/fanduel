@@ -57,6 +57,8 @@ StatScraper.prototype.setPlayerStats = function(player){
 
       player.gameStats = [];
       var $ = cheerio.load(body);
+
+      player.team = $('.player-team-links').find(':nth-child(1)').text();
       var stats     = $('table.data-table1').eq(1);
 
       stats.find('tbody tr:not(.border-td)').each(function(index, val){
