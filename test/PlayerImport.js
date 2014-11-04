@@ -12,7 +12,7 @@ describe('PlayerImport', function(){
       var result = PlayerImport.buildPlayer(playerData, fieldList, FootballPlayer);
 
       assert.equal('John Doe', result.name);
-      assert.equal(2, result.getExpectedPoints());
+      assert.equal(2, result.ffpg);
 
     });
 

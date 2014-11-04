@@ -26,11 +26,15 @@ function fantasyPoints(stats){
 
 function expectedFantasyPoints(player, expectedTeamPoints){
   var regressionData = [];
+  var gamesStarted = 0;
   _.each(player.gameStats, function(gameStats){
     gameStats.fantasyPoints = fantasyPoints(gameStats);
 
-    //add observation
-    regressionData.push([gameStats.score, gameStats.fantasyPoints])
+    //add observation only for games players started in
+    if (gameStats.gameStarted == 1) {
+      gamesStarted = gamesStarted + 1;
+      regressionData.push([gameStats.score, gameStats.fantasyPoints])
+    };
   });
 
   var regression = ss.linear_regression().data(regressionData).line();
@@ -39,7 +43,8 @@ function expectedFantasyPoints(player, expectedTeamPoints){
     m: ss.linear_regression().data(regressionData).m(),
     b: ss.linear_regression().data(regressionData).b(),
     rSquared: ss.r_squared(regressionData, regression),
-    teamPoints: expectedTeamPoints
+    teamPoints: expectedTeamPoints,
+    obs: gamesStarted
   };
   player.regression.expected = regression(expectedPoints);
 }

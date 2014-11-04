@@ -17,6 +17,7 @@ function generateUrl(playerName, id){
 
 function parseQBStats($val){
   return {
+          gameStarted : parseInt($val.find(':nth-child(6)').text().trim().replace("--",'0')),
           passYD: $val.find(':nth-child(10)').text().trim().replace("--",'0'),
           passTD: $val.find(':nth-child(12)').text().trim().replace("--",'0'),
           INT:    $val.find(':nth-child(13)').text().trim().replace("--",'0'),
@@ -28,6 +29,7 @@ function parseQBStats($val){
 
 function parseRBStats($val){
   return {
+          gameStarted : parseInt($val.find(':nth-child(6)').text().trim().replace("--",'0')),
           rushYD: $val.find(':nth-child(8)').text().trim().replace("--",'0'),
           rushTD: $val.find(':nth-child(11)').text().trim().replace("--",'0'),
           rec:    $val.find(':nth-child(12)').text().trim().replace("--",'0'),
@@ -39,6 +41,7 @@ function parseRBStats($val){
 
 function parseRecStats($val){
   return {
+          gameStarted : parseInt($val.find(':nth-child(6)').text().trim().replace("--",'0')),
           rec:    $val.find(':nth-child(7)').text().trim().replace("--",'0'),
           recYD:  $val.find(':nth-child(8)').text().trim().replace("--",'0'),
           recTD:  $val.find(':nth-child(11)').text().trim().replace("--",'0'),

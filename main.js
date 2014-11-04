@@ -9,10 +9,23 @@ var playerList = _.map(finalData, function(player){
   return new FootballPlayer(player);
 })
 
+var teamList = [
+  'Seattle Seahawks',
+  'San Francisco 49ers',
+  'Denver Broncos',
+  'Cincinnati Bengals',
+  'Indianapolis Colts',
+  'New England Patriots',
+  'Kansas City Chiefs',
+]
+
+
 console.log(playerList.length);
 playerList = _.filter(playerList, function(player){
-
-     return player.getExpectedPoints() > 7 && ! player.exclude && player.status != 'Q';
+  if (teamList.indexOf(player.team) > -1){
+    return player.getExpectedPoints() > 7 && ! player.exclude && player.status != 'Q' && player.regression.obs > 4;
+  }
+     return false;
     });
 console.log(playerList.length);
 playerList = filterDominatedPlayers(playerList, {

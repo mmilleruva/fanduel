@@ -8,12 +8,12 @@ describe('Football Team', function(){
     this.player1 = new FootballPlayer();
     this.player1.position = 'RB';
     this.player1.salary = 100;
-    this.player1.ffpg = 10;
+    this.player1.expected = 10;
 
     this.player2 = new FootballPlayer();
     this.player2.position = 'RB';
     this.player2.salary = 200;
-    this.player2.ffpg = 15;
+    this.player2.expected = 15;
 
     this.player3 = new FootballPlayer();
     this.player3.position = 'QB';
@@ -23,6 +23,7 @@ describe('Football Team', function(){
     this.team.addPlayer(this.player1);
     this.team.addPlayer(this.player2);
     this.team.addPlayer(this.player3);
+
   });
 
   describe('addPlayer', function(){
@@ -50,7 +51,7 @@ describe('Football Team', function(){
   describe('getExpectedPointsWithPlayer', function(){
     it('should add up teams expectedPoints plus new player',function(){
       var player = new FootballPlayer();
-      player.ffpg = 5;
+      player.expected = 5;
       assert.equal(30, this.team.getExpectedPointsWithPlayer(player));
     });
 

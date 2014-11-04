@@ -14,6 +14,7 @@ var FootballTeam = function(){
   this._validTeam = VALID_TEAM;
   this.salaryCap = SALARY_CAP;
   this.players = [];
+  this.pointsForPlayer = null;
 };
 
 FootballTeam.prototype.addPlayer = function(player){
@@ -34,7 +35,12 @@ FootballTeam.prototype.getExpectedPoints = function(){
   var total = 0;
 
   _.forEach(this.players, function(player){
-    total = total + player.getExpectedPoints();
+    if (this.pointsForPlayer != null) {
+      total = total + this.pointsForPlayer(player);
+    }
+    else {
+      total = total + player.getExpectedPoints();
+    }
   });
 
   return total;
@@ -95,6 +101,7 @@ FootballTeam.prototype.clone = function(){
   });
   team._validTeam = this._validTeam;
   team.salaryCap = this.salaryCap;
+  team.pointsForPlayer = this.pointsForPlayer;
   return team;
 };
 

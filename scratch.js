@@ -11,12 +11,10 @@ var fanDuelScraper = new FanDuelScraper();
 var lineScraper = new LineScraper.LineScraper();
 
 var lines = [];
-
 var finalPlayers = [];
 // Wire up process
 lineScraper.on(LineScraper.EVENTS.LINES_PARSED, function(theLines){
   lines = theLines;
-  console.log(lines);
   //fanDuelScraper.loadPlayers('./data/fanduel_raw.html');
 });
 fanDuelScraper.on("playersLoaded", function(players){
@@ -30,8 +28,8 @@ scraper.on("playerStatsSet", function(player){
   fantasyPoints(player,expectedPoints);
   finalPlayers.push(player);
   console.log(player);
-  console.log(",")
-})
+  console.log(",");
+});
 
 
 // Start Chain
