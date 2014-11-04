@@ -3,9 +3,9 @@ var fs = require('fs');
 var importPlayerData = function(filePath, fieldList, playerConstructor, cb){
 
   fs.readFile(filePath, 'UTF-8', function(err, data){
-    if (err != null) {
+    if (err !== null) {
       throw err;
-    };
+    }
     var lines = data.split(/\n/);
 
     var playerList = [];
@@ -14,12 +14,12 @@ var importPlayerData = function(filePath, fieldList, playerConstructor, cb){
       var playerData = lines[i].split(/,/);
       if (playerData.length == fieldList.length) {
         playerList.push(buildPlayer(playerData, fieldList, playerConstructor));
-      };
+      }
 
-    };
+    }
      cb(playerList);
   });
-}
+};
 
 var buildPlayer = function(playerData, fieldList, playerConstructor){
 
@@ -29,10 +29,10 @@ var buildPlayer = function(playerData, fieldList, playerConstructor){
     player[fieldList[j]] = playerData[j];
     if (fieldList[j] == 'salary' || fieldList[j] == 'ffpg') {
       player[fieldList[j]] = parseFloat(player[fieldList[j]]);
-    };
-  };
+    }
+  }
   return player;
-}
+};
 
 
 module.exports.importPlayerData = importPlayerData;

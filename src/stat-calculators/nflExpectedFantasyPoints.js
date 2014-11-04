@@ -12,9 +12,9 @@ function fantasyPoints(stats){
   stats.recTD      =  stats.recTD   || 0;
   stats.fumbles    =  stats.fumbles || 0;
 
-  return stats.rushYD     * .1  +
+  return stats.rushYD     * 0.1  +
          stats.rushTD     * 6   +
-         stats.passYD     * .04 +
+         stats.passYD     * 0.04 +
          stats.passTD     * 4   +
          stats.INT        * -1  +
          stats.rec        * 0.5  +
@@ -33,8 +33,8 @@ function expectedFantasyPoints(player, expectedTeamPoints){
     //add observation only for games players started in
     if (gameStats.gameStarted == 1) {
       gamesStarted = gamesStarted + 1;
-      regressionData.push([gameStats.score, gameStats.fantasyPoints])
-    };
+      regressionData.push([gameStats.score, gameStats.fantasyPoints]);
+    }
   });
 
   var regression = ss.linear_regression().data(regressionData).line();

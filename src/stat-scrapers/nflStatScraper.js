@@ -104,7 +104,7 @@ StatScraper.prototype.setNFLID = function(player){
     if(result){
       player.nflId = result[1];
 
-    };
+    }
     self.emit('NFLIDSet',player);
   });
 };

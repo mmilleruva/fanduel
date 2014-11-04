@@ -30,6 +30,6 @@ describe('PlayerImport', function(){
           done();
         });
     });
-  })
+  });
 
-})
+});

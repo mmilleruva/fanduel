@@ -39,13 +39,13 @@ describe('Football Team', function(){
   describe('getSalary', function(){
     it('should add up the players salaries',function(){
       assert.equal(450, this.team.getSalary());
-    })
+    });
   });
 
   describe('getExpectedPoints', function(){
     it('should add up the players expectedPoints',function(){
       assert.equal(25, this.team.getExpectedPoints());
-    })
+    });
   });
 
   describe('getExpectedPointsWithPlayer', function(){
@@ -59,7 +59,7 @@ describe('Football Team', function(){
       var player = new FootballPlayer();
       player.ffpg = 5;
       assert.equal(3, this.team.players.length);
-    })
+    });
   });
 
   describe('getPlayersByPosition', function(){
@@ -78,24 +78,24 @@ describe('Football Team', function(){
       var player = new FootballPlayer();
       player.position = 'WR';
       assert.equal(true,this.team.canAddPlayer(player));
-    })
+    });
 
     it('false if position is already filled',function(){
       var player = new FootballPlayer();
       player.position = 'RB';
       assert.equal(false,this.team.canAddPlayer(player));
-      player.position = 'QB'
+      player.position = 'QB';
       assert.equal(false,this.team.canAddPlayer(player));
     });
 
     it('false if total salary exceeds cap',function(){
       var player = new FootballPlayer();
       player.position = 'WR';
-      player.salary = 2000
+      player.salary = 2000;
       this.team.salaryCap = 1000;
       assert.equal(false,this.team.canAddPlayer(player));
     });
-  })
+  });
 
   describe('tryAddPlayer', function(){
     it('true if player added',function(){
@@ -112,13 +112,13 @@ describe('Football Team', function(){
       assert.equal(3,this.team.players.length);
     });
 
-  })
+  });
 
   describe('clone', function(){
     it('creates a new team identical to itself',function(){
       var team = this.team.clone();
       assert.equal(team.players.length, this.team.players.length);
-    })
+    });
 
     it('creates a deep copy of the player list',function(){
       var team = this.team.clone();
@@ -127,12 +127,13 @@ describe('Football Team', function(){
       team.addPlayer(player);
       assert.equal(4, team.players.length);
       assert.equal(3, this.team.players.length);
-    })
+    });
+
     it('creates a shallow copy of the players',function(){
       var team = this.team.clone();
       this.team.players[0].salary = 999;
       assert.equal(999, this.team.players[0].salary);
       assert.equal(999, team.players[0].salary);
-    })
-  })
+    });
+  });
 });

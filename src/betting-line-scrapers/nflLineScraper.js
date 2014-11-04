@@ -6,18 +6,19 @@ var _       = require('lodash');
 
 var EVENTS = {
   LINES_PARSED: "Lines Parsed"
-}
+};
 
 var LineScraper = function(){
   this.lines = [];
 };
+
 util.inherits(LineScraper, events.EventEmitter);
 
 function parseSpread($span){
   var val = $span.text().trim();
   if (val === 'PK') {
     return 0;
-  };
+  }
   return parseFloat(val);
 }
 
@@ -64,27 +65,27 @@ LineScraper.prototype.parseLines = function(){
         if (fav.name.length > 0) {
           lines.push(fav);
           lines.push(under);
-        };
+        }
       }
     });
     lines = _.sortBy(lines, function(team){
-      return -1 * team.expectedPoints
+      return -1 * team.expectedPoints;
     });
     self.lines = lines;
     self.emit(EVENTS.LINES_PARSED, lines);
   });
-}
+};
 
 LineScraper.prototype.expectedTeamPoints = function (team){
-  var team =  _.find(this.lines, function(line){
+  var lineTeam =  _.find(this.lines, function(line){
     return team.indexOf(line.name.trim()) >= 0;
   });
-  if (team) {
-    return team.expectedPoints;
-  };
+  if (lineTeam) {
+    return lineTeam.expectedPoints;
+  }
   return 0;
 
-}
+};
 
 module.exports.LineScraper = LineScraper;
 module.exports.EVENTS = EVENTS;

@@ -77,14 +77,14 @@ describe('TeamSelection', function(){
       assert.equal(0,theArray[0][9].getExpectedPoints());
       assert.equal(undefined,theArray[0][10]);
 
-    })
-  })
+    });
+  });
 
   describe('selectTeamRecursive', function(){
 
     it('should return empty team if there is no valid team', function(){
 
-      var players = []
+      var players = [];
       players.push(this.player1);
       players.push(this.player2);
       players.push(this.player3);
@@ -92,7 +92,7 @@ describe('TeamSelection', function(){
        var result = TeamSelection.selectTeamRecursive(players,team);
 
        assert.equal(0,result.getExpectedPoints());
-    })
+    });
 
     it('should return a valid team if it exists', function(){
 
@@ -100,7 +100,7 @@ describe('TeamSelection', function(){
        var result = TeamSelection.selectTeamRecursive(this.players,team);
 
        assert.equal(9,result.getExpectedPoints());
-    })
+    });
 
     it('should choose the better player for a position', function(){
 
@@ -109,7 +109,7 @@ describe('TeamSelection', function(){
        var result = TeamSelection.selectTeamRecursive(this.players,team);
 
        assert.equal(10,result.getExpectedPoints());
-    })
+    });
 
 
     it('should allow for small team', function(){
@@ -121,30 +121,30 @@ describe('TeamSelection', function(){
           new FootballPlayer({regression:{expected: 1}, position: 'RB', salary: 1}),
           new FootballPlayer({regression:{expected: 1}, position: 'WR', salary: 1}),
           new FootballPlayer({regression:{expected: 2}, position: 'WR', salary: 2}),
-       ]
+       ];
         team._validTeam = {
           'RB': 1,
           'WR': 1,
-        }
+        };
         team._salaryCap = 4;
        var result = TeamSelection.selectTeamRecursive(players,team);
 
        assert.equal(4,result.getExpectedPoints());
-    })
-  })
+    });
+  });
 
   describe('filterPlayersByPosition', function(){
     it('should filter players by position', function(){
       var result = TeamSelection.filterPlayersByPosition(this.players, 'RB');
-      assert.equal(2, result.length)
-    })
-  })
+      assert.equal(2, result.length);
+    });
+  });
 
   describe('bestPlayerForCost', function(){
     it('should select the best player for cost', function(){
-      this.players[2].ffpg = 10
+      this.players[2].ffpg = 10;
       var result = TeamSelection.bestPlayerForCost(this.players, 150 );
-      assert.equal(10, result.ffpg)
-    })
-  })
-})
+      assert.equal(10, result.ffpg);
+    });
+  });
+});

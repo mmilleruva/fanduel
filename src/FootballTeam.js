@@ -35,12 +35,7 @@ FootballTeam.prototype.getExpectedPoints = function(){
   var total = 0;
 
   _.forEach(this.players, function(player){
-    if (this.pointsForPlayer != null) {
-      total = total + this.pointsForPlayer(player);
-    }
-    else {
       total = total + player.getExpectedPoints();
-    }
   });
 
   return total;
@@ -75,7 +70,7 @@ FootballTeam.prototype.numPlayersAtPosition = function(pos){
 
 FootballTeam.prototype.canAddPlayer = function(player){
 
-  var allowedPlayers = this._validTeam[player.position] || 0
+  var allowedPlayers = this._validTeam[player.position] || 0;
   var currentPlayers = this.numPlayersAtPosition(player.position);
 
   if (currentPlayers + 1 <= allowedPlayers){
@@ -101,14 +96,13 @@ FootballTeam.prototype.clone = function(){
   });
   team._validTeam = this._validTeam;
   team.salaryCap = this.salaryCap;
-  team.pointsForPlayer = this.pointsForPlayer;
   return team;
 };
 
 FootballTeam.prototype.remainingPositions = function(){
   var keys = _.keys(this._validTeam);
   var playersAtPos = this.numPlayersByPosition();
-  var openPos = []
+  var openPos = [];
   for (var i = 0; i < keys.length; i++) {
     var curKey = keys[i];
     var playerCount = playersAtPos[curKey] || 0 ;
@@ -116,8 +110,8 @@ FootballTeam.prototype.remainingPositions = function(){
 
     if (curSpotsRemaining > 0) {
       openPos.push(curKey);
-    };
-  };
+    }
+  }
   return openPos;
 };
 

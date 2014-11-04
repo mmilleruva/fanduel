@@ -32,6 +32,6 @@ FanduelNflPlayerScraper.prototype.loadPlayers = function(filePath){
     });
     self.emit("playersLoaded",fdPlayers);
   });
-}
+};
 
-module.exports = FanduelNflPlayerScraper
+module.exports = FanduelNflPlayerScraper;
