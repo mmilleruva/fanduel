@@ -24,6 +24,11 @@
   "devDependencies": {
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-watch": "^0.6.1",
-    "grunt-mocha-test": "^0.12.2"
+    "grunt-mocha-test": "^0.12.2",
+    "husky": "^0.6.1"
+  },
+  "scripts": {
+    "precommit": "grunt jshint && grunt mochaTest",
+    "prepush": "grunt jshint && grunt mochaTest"
   }
 }
