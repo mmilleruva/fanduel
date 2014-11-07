@@ -1,6 +1,6 @@
 var assert            = require("assert");
 var TeamSelection     = require('../src/TeamSelection');
-var FootballPlayer    = require('../src/FootballPlayer');
+var FootballPlayer    = require('../src/Player');
 var FootballTeam      = require('../src/FootballTeam');
 
 describe('TeamSelection', function(){
@@ -80,6 +80,12 @@ describe('TeamSelection', function(){
     });
   });
 
+  describe('BestPlayersForSalary', function(){
+    it('should pick the best single player for a position', function(){
+
+    });
+  });
+
   describe('selectTeamRecursive', function(){
 
     it('should return empty team if there is no valid team', function(){
@@ -130,21 +136,6 @@ describe('TeamSelection', function(){
        var result = TeamSelection.selectTeamRecursive(players,team);
 
        assert.equal(4,result.getExpectedPoints());
-    });
-  });
-
-  describe('filterPlayersByPosition', function(){
-    it('should filter players by position', function(){
-      var result = TeamSelection.filterPlayersByPosition(this.players, 'RB');
-      assert.equal(2, result.length);
-    });
-  });
-
-  describe('bestPlayerForCost', function(){
-    it('should select the best player for cost', function(){
-      this.players[2].ffpg = 10;
-      var result = TeamSelection.bestPlayerForCost(this.players, 150 );
-      assert.equal(10, result.ffpg);
     });
   });
 });

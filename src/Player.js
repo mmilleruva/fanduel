@@ -1,6 +1,4 @@
-
-
-var FootballPlayer = function(vals){
+var Player = function(vals){
   vals = vals || {};
   this.name     = vals.name || "";
   this.status    = vals.status || '';
@@ -16,9 +14,9 @@ var FootballPlayer = function(vals){
   }
 };
 
-FootballPlayer.prototype.getExpectedPoints = function(){
+Player.prototype.getExpectedPoints = function(){
   return  this.expected || 0;
 };
 
 
-module.exports = FootballPlayer;
+module.exports = Player ;

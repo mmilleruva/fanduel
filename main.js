@@ -4,6 +4,7 @@ var FootballPlayer  = require('./src/FootballPlayer');
 var FootballTeam    = require('./src/FootballTeam');
 var finalData       = require('./data/finalData');
 var _               = require('lodash');
+var util            = require('util');
 
 var playerList = _.map(finalData, function(player){
   return new FootballPlayer(player);
@@ -22,10 +23,7 @@ var teamList = [
 
 console.log(playerList.length);
 playerList = _.filter(playerList, function(player){
-  if (teamList.indexOf(player.team) > -1){
-    return player.getExpectedPoints() > 7 && ! player.exclude && player.status != 'Q' && player.regression.obs > 4;
-  }
-     return false;
+    return player.getExpectedPoints() > 7  && player.regression.teamPoints > 20 && ! player.exclude && player.status == '' && player.regression.obs > 4;
     });
 console.log(playerList.length);
 playerList = filterDominatedPlayers(playerList, {
@@ -35,7 +33,6 @@ playerList = filterDominatedPlayers(playerList, {
           'TE': 1});
 
 console.log(playerList.length);
-console.log(playerList);
 main(playerList);
 
 function main(playerList){
@@ -50,7 +47,7 @@ function main(playerList){
     console.log(team._validTeam);
     team = TeamSelection.selectTeamRecursive(playerList, team);
 
-    console.log(team);
+    console.log(util.inspect(team, false, null));
     console.log("Salary Spent: "+ team.getSalary() );
     console.log("Expected Points: "+ team.getExpectedPoints() );
 }

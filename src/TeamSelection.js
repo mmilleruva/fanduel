@@ -78,31 +78,6 @@ var initialize = function(playerCount){
   return solutionArray;
 };
 
-var filterPlayersByPosition = function(players, position) {
-  return _.filter(players, function(player){
-    return player.position === position;
-  });
-};
-
-var bestPlayerForCost = function(players, maxSalary) {
-  return _.max(players, function(player){
-    if (player.salary <= maxSalary ){
-      return player.salary;
-    }
-    return 0;
-  });
-};
-
-bestPosPlayersForSalary = function(players, salary) {
-  solution = [];
-  for (var curSal = 0; curSal < salary; curSal = curSal + 100) {
-    solution[curSal] = bestPlayerForCost(players, curSalary);
-  }
-  return solution;
-};
-
 module.exports.SelectTeam = selectTeam;
 module.exports.initialize = initialize;
 module.exports.selectTeamRecursive = selectTeamRecursive;
-module.exports.filterPlayersByPosition = filterPlayersByPosition;
-module.exports.bestPlayerForCost = bestPlayerForCost;

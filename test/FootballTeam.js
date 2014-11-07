@@ -1,6 +1,6 @@
 var assert          = require("assert");
 var FootballTeam    = require('../src/FootballTeam');
-var FootballPlayer  = require('../src/FootballPlayer');
+var FootballPlayer  = require('../src/Player');
 
 describe('Football Team', function(){
 
