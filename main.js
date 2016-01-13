@@ -1,6 +1,6 @@
 var PlayerImport    = require('./src/PlayerImport');
 var TeamSelection   = require('./src/TeamSelection');
-var FootballPlayer  = require('./src/FootballPlayer');
+var FootballPlayer  = require('./src/Player');
 var FootballTeam    = require('./src/FootballTeam');
 var finalData       = require('./data/finalData');
 var _               = require('lodash');
