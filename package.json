@@ -9,7 +9,8 @@
   "scripts": {
     "precommit": "grunt jshint && grunt mochaTest",
     "prepush": "grunt jshint && grunt mochaTest",
-    "test" : "mocha test"
+    "test" : "mocha test",
+    "start": "node main.js"
   },
   "author": "Michael Miller",
   "license": "ISC",
