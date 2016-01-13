@@ -9,3 +9,12 @@ Fanduel Team Picking Tool
 Commands
 ----------
 * npm run
+
+
+Grunt Tasks
+------
+```
+mochaTest  Run node unit tests with Mocha *
+watch  Run predefined tasks whenever watched files change.
+jshint  Validate files with JSHint. *
+```
