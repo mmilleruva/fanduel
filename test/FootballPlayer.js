@@ -7,5 +7,10 @@ describe('Football Player', function(){
       var player = new FootballPlayer();
       assert.equal(0,player.ffpg);
     });
+
+    it('Should have getExpectedPoints be zero by default', function(){
+      var player = new FootballPlayer();
+      assert.equal(0,player.getExpectedPoints());
+    });
   });
 });
