@@ -10,30 +10,6 @@ var playerList = _.map(finalData, function(player){
   return new FootballPlayer(player);
 })
 
-var teamList = [
-  'Seattle Seahawks',
-  'San Francisco 49ers',
-  'Denver Broncos',
-  'Cincinnati Bengals',
-  'Indianapolis Colts',
-  'New England Patriots',
-  'Kansas City Chiefs',
-]
-
-
-console.log(playerList.length);
-playerList = _.filter(playerList, function(player){
-    return player.getExpectedPoints() > 7  && player.regression.teamPoints > 20 && ! player.exclude && player.status == '' && player.regression.obs > 4;
-    });
-console.log(playerList.length);
-playerList = filterDominatedPlayers(playerList, {
-          'WR': 3,
-          'RB': 2,
-          'QB': 1,
-          'TE': 1});
-
-console.log(playerList.length);
-main(playerList);
 
 function main(playerList){
     var team = new FootballTeam();
@@ -44,10 +20,11 @@ function main(playerList){
           'TE': 1,
         };
     team.salaryCap = 49700;
-    console.log(team._validTeam);
     team = TeamSelection.selectTeamRecursive(playerList, team);
 
+    console.log("########### Players Chosen #################\n");
     console.log(util.inspect(team, false, null));
+    console.log("\n\n########### Summary #################");
     console.log("Salary Spent: "+ team.getSalary() );
     console.log("Expected Points: "+ team.getExpectedPoints() );
 }
@@ -68,4 +45,28 @@ function filterDominatedPlayers(players, validTeam){
   })
   return returnList;
 }
+
+var teamList = [
+  'Seattle Seahawks',
+  'San Francisco 49ers',
+  'Denver Broncos',
+  'Cincinnati Bengals',
+  'Indianapolis Colts',
+  'New England Patriots',
+  'Kansas City Chiefs',
+]
+
+
+
+playerList = _.filter(playerList, function(player){
+    return player.getExpectedPoints() > 7  && player.regression.teamPoints > 20 && ! player.exclude && player.status == '' && player.regression.obs > 4;
+    });
+
+playerList = filterDominatedPlayers(playerList, {
+          'WR': 3,
+          'RB': 2,
+          'QB': 1,
+          'TE': 1});
+
+main(playerList);
 

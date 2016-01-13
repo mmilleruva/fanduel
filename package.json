@@ -9,7 +9,7 @@
   "scripts": {
     "precommit": "grunt jshint && grunt mochaTest",
     "prepush": "grunt jshint && grunt mochaTest",
-    "test" : "mocha test",
+    "test": "grunt jshint && mocha test",
     "start": "node main.js"
   },
   "author": "Michael Miller",
@@ -25,6 +25,7 @@
     "simple-statistics": "^0.9.0"
   },
   "devDependencies": {
+    "grunt-cli": "^0.1.13",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-mocha-test": "^0.12.2",
